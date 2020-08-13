@@ -1,0 +1,20 @@
+body {
+    background-color: black;
+    color: white;
+}
+.col-2-custom {
+    max-width: 11.666667% !important;
+}
+.custom-select-sm {
+    border: none;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+}
+.custom-select:focus, .card-body:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0);
+    outline: 0;
+}
+.select-custom {
+    margin-top: -1px;
+    margin-left: 5px;
+}
