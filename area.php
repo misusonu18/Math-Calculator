@@ -26,7 +26,15 @@ include 'layouts/header.php';
                         <option value="sector">Sector</option>
                         <option value="ellipse">Ellipse</option>
                         <option value="trapezoid">Trapezoid</option>
-                        <option value="ellipse">Ellipse</option>
+                        <option value="parallelogram">Parallelogram</option>
+                        <option value="rhombus">Rhombus</option>
+                        <option value="kite">Kite</option>
+                        <option value="pentagon">Pentagon</option>
+                        <option value="hexagon">Hexagon</option>
+                        <option value="octagon">Octagon</option>
+                        <option value="annulus">Annulus (Ring)</option>
+                        <option value="quadrilateral">irregular quadrilateral</option>
+                        <option value="polygon">Polygon</option>
                     </select>
                 </div>
             </div>
@@ -39,7 +47,8 @@ include 'layouts/header.php';
         </div>
 
         <div class="card-body text-white bg-dark justify-content-center">
-            <div id="area-calculation"> </div>
+            <p class="alert alert-danger invisible" id="alert-message"></p>
+            <div id="area-calculation"></div>
         </div>
     </div>
 </div>
