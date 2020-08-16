@@ -1,7 +1,6 @@
 var body = document.getElementsByTagName('body')[0];
 body.setAttribute('onload', 'selectedShape()');
 
-
 function selectedShape() {
     var selectedShape = document.getElementById('shape-select').value;
     var findGivenPerimeterDiv = document.getElementById('find-given-perimeter');
@@ -77,7 +76,7 @@ function selectedShape() {
             rhombusOption();
             break;
         case 'kite':
-            inputTags(2, 'Kite Perimeter', 'kite-', 'perimeter', 'findKitePerimeter', 0, ['e', 'f'], 0, 'kite3.svg');
+            inputTags(2, 'Kite Perimeter', 'kite-', 'perimeter', 'findKitePerimeter', 0, ['a', 'b   '], 0, 'kite3.svg');
             break;
         case 'pentagon':
             inputTags(1, 'Pentagon Perimeter', 'pentagon-', 'perimeter', 'findPentagonPerimeter', 0, ['a'], 0, 'pentagon.svg');
@@ -749,7 +748,6 @@ function findParallelogramPerimeter(variableA, variableB, variableC, selectedUni
                 var selectedUnitValueC = variableAngleChange(variableC, selectedUnitC);
 
                 if (selectedUnitValueA !== '' && selectedUnitValueB !== '' && selectedUnitValueC !== 0) {
-                    console.log(selectedUnitValueA + '\n' + selectedUnitValueB + '\n' + selectedUnitValueC);
                     perimeter = 2 * ((Number(selectedUnitValueA) + Number(selectedUnitValueB) / Math.sin(selectedUnitValueC)));
                 } else
                     perimeter = 0;
@@ -814,10 +812,8 @@ function findRhombusPerimeter(variableA, variableB, selectedUnitA, selectedUnitB
 function findKitePerimeter(variableA, variableB, selectedUnitA, selectedUnitB, selectedUnit2) {
     if (variableA === undefined &&
         variableB === undefined &&
-        variableC === undefined &&
         selectedUnitA === undefined &&
         selectedUnitB === undefined &&
-        selectedUnitC === undefined &&
         selectedUnit2 === undefined
     ) {
         var kiteValueA = document.getElementById('kite-A').value;
@@ -825,18 +821,17 @@ function findKitePerimeter(variableA, variableB, selectedUnitA, selectedUnitB, s
 
         document.getElementById('kite-A').setAttribute('data-a', kiteValueA);
         document.getElementById('kite-B').setAttribute('data-b', kiteValueB);
-
-        if (document.getElementById('kite-C')) {
-            var kiteValueC = document.getElementById('kite-C').value;
-            document.getElementById('kite-C').setAttribute('data-c', kiteValueC);
-        }
         unitChange();
     } else {
         var selectedUnitValueA = variableUnitChange(variableA, selectedUnitA);
         var selectedUnitValueB = variableUnitChange(variableB, selectedUnitB);
         var perimeter;
 
-        perimeter = 2 * (Number(selectedUnitValueA) + Number(selectedUnitValueB));
+        if (selectedUnitValueA !== '' && selectedUnitValueB !== '') {
+            perimeter = 2 * (Number(selectedUnitValueA) + Number(selectedUnitValueB));
+        }else {
+            perimeter = 0;
+        }
         var selectedUnit2Value = perimeterUnitChange(perimeter, selectedUnit2);
         document.getElementById('perimeter').value = selectedUnit2Value;
     }
