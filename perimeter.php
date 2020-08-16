@@ -9,7 +9,7 @@ include 'layouts/header.php';
     </div>
 
     <div class="row d-flex justify-content-center mt-3">
-        <p class="h1">Perimeter Calculator</p>
+        <p class="h1">PERIMETER CALCULATOR</p>
     </div>
     <hr class="bg-primary"/>
     
