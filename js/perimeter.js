@@ -10,16 +10,16 @@ function selectedShape() {
 
     switch (selectedShape) {
         case 'square':
-            inputTags(1, 'Square Perimeter', 'square-', 'perimeter', 'findSquarePerimeter', 0, ['a'], 0);
+            inputTags(1, 'Square Perimeter', 'square-', 'perimeter', 'findSquarePerimeter', 0, ['a'], 0, 'square.svg');
             break;
         case 'rectangle':
-            inputTags(2, 'Rectangle Perimeter', 'rectangle-', 'perimeter', 'findRectanglePerimeter', 0, ['a', 'b'], 0);
+            inputTags(2, 'Rectangle Perimeter', 'rectangle-', 'perimeter', 'findRectanglePerimeter', 0, ['a', 'b'], 0, 'rectangle.svg');
             break;
         case 'triangle':
             var select = document.createElement("select");
 
             select.setAttribute("id", "triangle-option");
-            select.setAttribute("class", "custom-select custom-select-sm inline border border-dark");
+            select.setAttribute("class", "custom-select custom-select-sm inline border border-info");
             select.setAttribute('onchange', 'triangleOption()');
 
             select.options.add(new Option("Three Sides (SSS)", "threeSides", true, true));
@@ -32,23 +32,23 @@ function selectedShape() {
             triangleOption();
             break;
         case 'circle':
-            inputTags(1, 'Circle Perimeter', 'circle-', 'perimeter', 'findCirclePerimeter', 0, ['r'], 0);
+            inputTags(1, 'Circle Perimeter', 'circle-', 'perimeter', 'findCirclePerimeter', 0, ['r'], 0, 'circle.svg');
             break;
         case 'semi-circle':
-            inputTags(1, 'Semi-Circle Perimeter', 'semi-circle-', 'perimeter', 'findSemiCirclePerimeter', 0, ['r'], 0);
+            inputTags(1, 'Semi-Circle Perimeter', 'semi-circle-', 'perimeter', 'findSemiCirclePerimeter', 0, ['r'], 0, 'semicircle.svg');
             break;
         case 'ellipse':
-            inputTags(2, 'Ellipse Perimeter', 'ellipse-', 'perimeter', 'findEllipsePerimeter', 0, ['a', 'b'], 0);
+            inputTags(2, 'Ellipse Perimeter', 'ellipse-', 'perimeter', 'findEllipsePerimeter', 0, ['a', 'b'], 0, 'ellipse.svg');
             break;
         case 'trapezoid':
             inputTags(4, 'Trapezoid Perimeter', 'trapezoid-', 'perimeter', 'findTrapezoidPerimeter', 0, ['a', 'b', 'c',
-            'd'], 0);
+            'd'], 0, 'trapezoid.svg');
             break;
         case 'parallelogram':
             var select = document.createElement("select");
 
             select.setAttribute("id", "parallelogram-option");
-            select.setAttribute("class", "custom-select custom-select-sm inline border border-dark");
+            select.setAttribute("class", "custom-select custom-select-sm inline border border-info");
             select.setAttribute('onchange', 'parallelogramOption()');
 
             select.options.add(new Option("Sides", "side", true, true));
@@ -64,7 +64,7 @@ function selectedShape() {
             var select = document.createElement("select");
 
             select.setAttribute("id", "rhombus-option");
-            select.setAttribute("class", "custom-select custom-select-sm inline border border-dark");
+            select.setAttribute("class", "custom-select custom-select-sm  inline border border-info");
             select.setAttribute('onchange', 'rhombusOption()');
 
             select.options.add(new Option("Side And Height", "sideAndHeight", true, true));
@@ -77,85 +77,103 @@ function selectedShape() {
             rhombusOption();
             break;
         case 'kite':
-            var select = document.createElement("select");
-
-            select.setAttribute("id", "kite-option");
-            select.setAttribute("class", "custom-select custom-select-sm inline border border-dark");
-            select.setAttribute('onchange', 'kiteOption()');
-
-            select.options.add(new Option("Diagonals", "diagonal", true, true));
-            select.options.add(new Option("Two Unequal Sides + Angle Between Them", "unequalSideAndAngle", false, false));
-
-            findGivenPerimeterDiv.classList.remove("invisible");
-            document.getElementById('find-perimeter-option').appendChild(select);
-
-            kiteOption();
+            inputTags(2, 'Kite Perimeter', 'kite-', 'perimeter', 'findKitePerimeter', 0, ['e', 'f'], 0, 'kite3.svg');
             break;
         case 'pentagon':
-            inputTags(1, 'Pentagon Area', 'pentagon-', 'perimeter', 'findPentagonArea', 0, ['a'], 0);
+            inputTags(1, 'Pentagon Perimeter', 'pentagon-', 'perimeter', 'findPentagonPerimeter', 0, ['a'], 0, 'pentagon.svg');
             break;
         case 'hexagon':
-            inputTags(1, 'Hexagon Area', 'hexagon-', 'perimeter', 'findHexagonArea', 0, ['a'], 0);
+            inputTags(1, 'Hexagon Perimeter', 'hexagon-', 'perimeter', 'findHexagonPerimeter', 0, ['a'], 0, 'hexagon.svg');
             break;
         case 'octagon':
-            inputTags(1, 'Octagon Area', 'octagon-', 'perimeter', 'findOctagonArea', 0, ['a'], 0);
+            inputTags(1, 'Octagon Perimeter', 'octagon-', 'perimeter', 'findOctagonPerimeter', 0, ['a'], 0, 'octagon.svg');
             break;
         case 'annulus':
-            inputTags(2, 'Annulus Area', 'annulus-', 'perimeter', 'findAnnulusArea', 0, ['R', 'r'], 0);
+            inputTags(2, 'Annulus Perimeter', 'annulus-', 'perimeter', 'findAnnulusPerimeter', 0, ['R', 'r'], 0, 'annulus.svg');
             break;
         case 'quadrilateral':
-            inputTags(2, 'Quadrilateral Area', 'quadrilateral-', 'perimeter', 'findQuadrilateralArea', 1, ['e', 'f'], ['Alpha']);
+            inputTags(2, 'Quadrilateral Perimeter', 'quadrilateral-', 'perimeter', 'findQuadrilateralPerimeter', 1, ['e', 'f'], ['α'], 'quadrilateral.svg');
             break;
         case 'polygon':
-            inputTags(2, 'Polygon Area', 'polygon-', 'perimeter', 'findPolygonArea', 0, ['a'], 0);
+            inputTags(2, 'Polygon Perimeter', 'polygon-', 'perimeter', 'findPolygonPerimeter', 0, ['Numbers Of Sides','a'], 0, 'polygon.svg');
             break;
         default:
             break;
     }
 }
 
-function inputTags(totalInputBox, totalInputBoxName, inputBoxId, totalInputBoxId, functionName, inputBoxOfAngle, variableName, variableAngleName) {
-    var div = document.getElementById("perimeter-calculation");
+// 1.NumberOfInputsBox, 2.TotalInputBoxName, 3.NumberOfInputBoxId, 4.TotalInputBoxId, 5.FunctionName, 6.NumberOfInputBoxOfAngle, 7.NameOfInputBox, 8.NameOfInputBoxOfAnle, 9.ImageName; 
+function inputTags(totalInputBox, 
+    totalInputBoxName, 
+    inputBoxId, 
+    totalInputBoxId, 
+    functionName, 
+    inputBoxOfAngle, 
+    variableName, 
+    variableAngleName, 
+    imageName
+) {
+    var perimeterCalculation = document.getElementById("perimeter-calculation");
+    var perimeterImage = document.getElementById("perimeter-image");
+    var image = document.getElementById("image");
 
-    while (div.hasChildNodes()) {
-        div.removeChild(div.lastChild);
+    if (imageName) {
+        image.setAttribute('src', 'images/' + imageName);
+    } else {
+        image.setAttribute('src', '');
+        image.setAttribute('alt', totalInputBoxId);   
+    }
+    perimeterImage.appendChild(image);
+
+    while (perimeterCalculation.hasChildNodes()) {
+        perimeterCalculation.removeChild(perimeterCalculation.lastChild);
     }
     var i = 0, j = 0;
     do {
-        div.appendChild(document.createTextNode(variableName[i]));
-        div.appendChild(document.createElement("br"));
-        var a = document.createElement("input");
-        a.type = "text";
-        a.setAttribute('id', inputBoxId + String.fromCharCode(65 + i));
-        a.setAttribute('class', 'form-control form-control-sm d-inline mb-3 text-right col-3');
-        a.setAttribute('onkeypress', "return restrictAlphabets(event)");
-        a.setAttribute('onkeyup', functionName + '()');
-        div.appendChild(a);
+        var inputBox = document.createElement("input");
+        var variableLabelName = document.createElement("p");
+        variableLabelName.setAttribute('class', 'h4');
+
+        variableLabelName.innerText = variableName[i];
+        inputBox.type = "text";
+        inputBox.setAttribute('id', inputBoxId + String.fromCharCode(65 + i));
+        inputBox.setAttribute('class', 'form-control form-control-sm d-inline mb-3 text-right col-3');
+        inputBox.setAttribute('onkeypress', "return restrictAlphabets(event)");
+        inputBox.setAttribute('onkeyup', functionName + '()');
+        perimeterCalculation.appendChild(variableLabelName);
+        perimeterCalculation.appendChild(inputBox);
         unitName(inputBoxId, String.fromCharCode(65 + i));
-        div.appendChild(document.createElement("br"));
+        perimeterCalculation.appendChild(document.createElement("br"));
         i++;
     } while (i < totalInputBox);
 
     for (let j = 0; j < inputBoxOfAngle; j++) {
-        div.appendChild(document.createTextNode('Angle ' + variableAngleName[j]));
-        div.appendChild(document.createElement("br"));
-        var a = document.createElement("input");
-        a.type = "text";
-        a.setAttribute('id', inputBoxId + String.fromCharCode(65 + j + i));
-        a.setAttribute('class', 'form-control form-control-sm d-inline mb-3 text-right col-3');
-        a.setAttribute('onkeyup', functionName + '()');
-        div.appendChild(a);
+        var angleInputBox = document.createElement("input");
+        var angleLabelName = document.createElement("p");
+        angleLabelName.setAttribute('class', 'h4');
+
+        angleLabelName.innerText = 'Angle ' + variableAngleName[j];
+        angleInputBox.type = "text";
+        angleInputBox.setAttribute('id', inputBoxId + String.fromCharCode(65 + j + i));
+        angleInputBox.setAttribute('class', 'form-control form-control-sm d-inline mb-3 text-right col-3');
+        angleInputBox.setAttribute('onkeypress', "return restrictAlphabets(event)");
+        angleInputBox.setAttribute('onkeyup', functionName + '()');
+        perimeterCalculation.appendChild(angleLabelName);
+        perimeterCalculation.appendChild(angleInputBox);
         angleName(inputBoxId, String.fromCharCode(65 + j + i));
-        div.appendChild(document.createElement("br"));
+        perimeterCalculation.appendChild(document.createElement("br"));
     }
 
-    div.appendChild(document.createTextNode(totalInputBoxName));
-    div.appendChild(document.createElement("br"));
-    var perimeter = document.createElement("input");
-    perimeter.type = "text";
-    perimeter.setAttribute('id', totalInputBoxId);
-    perimeter.setAttribute('class', 'form-control form-control-sm d-inline text-right col-3');
-    div.appendChild(perimeter);
+    var totalLabelName = document.createElement("p");
+    totalLabelName.setAttribute('class', 'h4');
+
+    totalLabelName.innerText = totalInputBoxName;
+    var perimeterInput = document.createElement("input");
+    perimeterInput.type = "text";
+    perimeterInput.setAttribute('id', totalInputBoxId);
+    perimeterInput.setAttribute('class', 'form-control form-control-sm d-inline text-right col-3');
+    perimeterCalculation.appendChild(totalLabelName);
+    perimeterCalculation.appendChild(perimeterInput);
     unitSquareName(totalInputBoxId);
 }
 
@@ -164,7 +182,7 @@ function unitName(inputIdName, dataAttributeVariableName) {
     var select = document.createElement("select");
     select.setAttribute("id", "unit-select-" + dataAttributeVariableName);
     select.setAttribute("data-" + dataAttributeVariableName, inputIdName + dataAttributeVariableName);
-    select.setAttribute("class", "custom-select custom-select-sm inline col-2-custom select-custom border border-light text-white bg-dark");
+    select.setAttribute("class", "custom-select custom-select-sm inline col-2-custom select-custom border border-light text-white bg-secondary");
     select.setAttribute('onchange', 'unitChange()');
     document.getElementById('perimeter-calculation').appendChild(select);
 
@@ -185,7 +203,7 @@ function unitSquareName(inputIdName) {
     var frag = document.createDocumentFragment();
     var select = document.createElement("select");
     select.setAttribute("id", "unit-2-select");
-    select.setAttribute("class", "custom-select custom-select-sm inline col-2-custom select-custom border border-light text-white bg-dark");
+    select.setAttribute("class", "custom-select custom-select-sm inline col-2-custom select-custom border border-light text-white bg-secondary");
     select.setAttribute("data-perimeter", inputIdName);
     select.setAttribute('onchange', 'unitChange()');
     document.getElementById('perimeter-calculation').appendChild(select);
@@ -209,7 +227,7 @@ function angleName(inputIdName, dataAttributeVariableName) {
     var select = document.createElement("select");
     select.setAttribute("id", "angle-select-" + dataAttributeVariableName);
     select.setAttribute("data-" + dataAttributeVariableName, inputIdName + dataAttributeVariableName);
-    select.setAttribute("class", "custom-select custom-select-sm inline col-2-custom select-custom border border-light text-white bg-dark");
+    select.setAttribute("class", "custom-select custom-select-sm inline col-2-custom select-custom border border-light text-white bg-secondary");
     select.setAttribute('onchange', 'unitChange()');
     document.getElementById('perimeter-calculation').appendChild(select);
 
@@ -324,64 +342,31 @@ function unitChange() {
             var inputB = document.getElementById("rhombus-B").getAttribute('data-b');
 
             switch (rhombusOption) {
-                case 'sideAndHeight':
-                    findRhombusArea(inputA, inputB, selectedUnitA, selectedUnitB, selectedUnit2);
+                case 'side':
+                    findRhombusPerimeter(inputA, selectedUnitA, selectedUnit2);
                     break;
                 case 'diagonal':
-                    findRhombusArea(inputA, inputB, selectedUnitA, selectedUnitB, selectedUnit2);
-                    break;
-                case 'sideAndAngle':
-                    findRhombusArea(inputA, inputB, selectedUnitA, selectedAngleB, selectedUnit2);
+                    findRhombusPerimeter(inputA, inputB, selectedUnitA, selectedUnitB, selectedUnit2);
                     break;
                 default:
                     break;
             }
             break;
         case 'kite':
-            var kiteOption = document.getElementById('kite-option').value;
             var inputA = document.getElementById("kite-A").getAttribute('data-a');
             var inputB = document.getElementById("kite-B").getAttribute('data-b');
 
-            switch (kiteOption) {
-                case 'diagonal':
-                    console.log(inputA + '\n' + inputB);
-                    findKiteArea(inputA, inputB, null, selectedUnitA, selectedUnitB, null, selectedUnit2);
-                    break;
-                case 'unequalSideAndAngle':
-                    var inputC = document.getElementById("kite-C").getAttribute('data-c');
-                    findKiteArea(inputA, inputB, inputC, selectedUnitA, selectedUnitB, selectedAngleC, selectedUnit2);
-                    break;
-                default:
-                    break;
-            }
-            break;
-        case 'pentagon':
-            var inputA = document.getElementById("pentagon-A").getAttribute('data-a');
-            findPentagonArea(inputA, selectedUnitA, selectedUnit2);
-            break;
-        case 'hexagon':
-            var inputA = document.getElementById("hexagon-A").getAttribute('data-a');
-            findHexagonArea(inputA, selectedUnitA, selectedUnit2);
-            break;
-        case 'octagon':
-            var inputA = document.getElementById("octagon-A").getAttribute('data-a');
-            findOctagonArea(inputA, selectedUnitA, selectedUnit2);
+            findKitePerimeter(inputA, inputB, selectedUnitA, selectedUnitB, selectedUnit2);
             break;
         case 'annulus':
             var inputA = document.getElementById("annulus-A").getAttribute('data-a');
             var inputB = document.getElementById("annulus-B").getAttribute('data-b');
-            findAnnulusArea(inputA, inputB, selectedUnitA, selectedUnitB, selectedUnit2);
-            break;
-        case 'quadrilateral':
-            var inputA = document.getElementById("quadrilateral-A").getAttribute('data-a');
-            var inputB = document.getElementById("quadrilateral-B").getAttribute('data-b');
-            var inputC = document.getElementById("quadrilateral-C").getAttribute('data-C');
-            findQuadrilateralArea(inputA, inputB, inputC, selectedUnitA, selectedUnitB, selectedAngleC, selectedUnit2);
+            findAnnulusPerimeter(inputA, inputB, selectedUnitA, selectedUnitB, selectedUnit2);
             break;
         case 'polygon':
             var inputA = document.getElementById("polygon-A").getAttribute('data-a');
             var inputB = document.getElementById("polygon-B").getAttribute('data-b');
-            findAnnulusArea(inputA, selectedUnitA, selectedUnit2);
+            findPolygonPerimeter(inputA, inputB, selectedUnitA, selectedUnitB, selectedUnit2);
             break;
         default:
             break;
@@ -480,6 +465,10 @@ function findSquarePerimeter(variableA, selectedUnitA, selectedUnit2) {
         var selectedUnitValue = variableUnitChange(variableA, selectedUnitA);
         var perimeter = selectedUnitValue * 4;
         var selectedUnit2Value = perimeterUnitChange(perimeter, selectedUnit2);
+        var formula = document.getElementById('formula');
+
+        formula.classList.remove('invisible');
+        formula.innerHTML = "Formula of Square Perimerter: <u> a * 4 </u>";
         document.getElementById('perimeter').value = selectedUnit2Value;
     }
 }
@@ -516,13 +505,13 @@ function triangleOption() {
     var triangleOption = document.getElementById('triangle-option').value;
     switch (triangleOption) {
         case 'threeSides':
-            inputTags(3, 'Triangle Perimeter', 'triangle-', 'perimeter', 'findTrianglePerimeter', 0, ['a', 'b', 'c'], 0);
+            inputTags(3, 'Triangle Perimeter', 'triangle-', 'perimeter', 'findTrianglePerimeter', 0, ['a', 'b', 'c'], 0, 'triangle2.svg');
             break;
         case 'twoSideAngle':
-            inputTags(2, 'Triangle Perimeter', 'triangle-', 'perimeter', 'findTrianglePerimeter', 1, ['a', 'b'], ['Gamma']);
+            inputTags(2, 'Triangle Perimeter', 'triangle-', 'perimeter', 'findTrianglePerimeter', 1, ['a', 'b'], ['γ'], 'triangle3.svg');
             break;
         case 'twoAngleSide':
-            inputTags(1, 'Triangle Perimeter', 'triangle-', 'perimeter', 'findTrianglePerimeter', 2, ['a'], ['Beta', 'Gamma']);
+            inputTags(1, 'Triangle Perimeter', 'triangle-', 'perimeter', 'findTrianglePerimeter', 2, ['a'], ['β', 'γ'], 'triangle4.svg');
             break;
         default:
             break;
@@ -700,13 +689,13 @@ function parallelogramOption() {
     var parallelogramOption = document.getElementById('parallelogram-option').value;
     switch (parallelogramOption) {
         case 'side':
-            inputTags(2, 'Parallelogram Perimeter', 'parallelogram-', 'perimeter', 'findParallelogramPerimeter', 0, ['a', 'b'], 0);
+            inputTags(2, 'Parallelogram Perimeter', 'parallelogram-', 'perimeter', 'findParallelogramPerimeter', 0, ['a', 'b'], 0, 'parallelogram4.svg');
             break;
         case 'oneSideAndDiagonal':
-            inputTags(3, 'Parallelogram Perimeter', 'parallelogram-', 'perimeter', 'findParallelogramPerimeter', 0, ['b', 'e', 'f'], 0);
+            inputTags(3, 'Parallelogram Perimeter', 'parallelogram-', 'perimeter', 'findParallelogramPerimeter', 0, ['b', 'e', 'f'], 0, 'parallelogram5.svg');
             break;
         case 'baseHeightAndAngle':
-            inputTags(2, 'Parallelogram Perimeter', 'parallelogram-', 'perimeter', 'findParallelogramPerimeter', 1, ['b', 'h'], ['Alpha']);
+            inputTags(2, 'Parallelogram Perimeter', 'parallelogram-', 'perimeter', 'findParallelogramPerimeter', 1, ['b', 'h'], ['α'], 'parallelogram6.svg');
             break;
         default:
             break;
@@ -749,16 +738,19 @@ function findParallelogramPerimeter(variableA, variableB, variableC, selectedUni
                 }
                 break;
             case 'oneSideAndDiagonal':
-                var selectedUnitValueC = variableAngleChange(variableC, selectedUnitC);
+                var selectedUnitValueC = variableUnitChange(variableC, selectedUnitC);
+
                 if (selectedUnitValueA !== null && selectedUnitValueB !== '' && selectedUnitValueC !== '') {
-                    perimeter = 2 * (selectedUnitValueA * selectedUnitValueA) + Math.sqrt(2 * (selectedUnitValueB * selectedUnitValueB) + (2 * (selectedUnitValueC * selectedUnitValueC)) - 4 * (selectedUnitValueA * selectedUnitValueA));
+                    perimeter = (2 * (selectedUnitValueA * selectedUnitValueA)) + Math.sqrt(Number(2 * (selectedUnitValueB * selectedUnitValueB) + Number(2 * (selectedUnitValueC * selectedUnitValueC))) - 4 * (selectedUnitValueA * selectedUnitValueA));
                 } else
                     perimeter = 0;
                 break;
             case 'baseHeightAndAngle':
                 var selectedUnitValueC = variableAngleChange(variableC, selectedUnitC);
-                if (selectedUnitValueA !== null && selectedUnitValueB !== '' && selectedUnitValueC !== '') {
-                    perimeter = (selectedUnitValueA * selectedUnitValueB) * Math.sin(selectedUnitValueC);
+
+                if (selectedUnitValueA !== '' && selectedUnitValueB !== '' && selectedUnitValueC !== 0) {
+                    console.log(selectedUnitValueA + '\n' + selectedUnitValueB + '\n' + selectedUnitValueC);
+                    perimeter = 2 * ((Number(selectedUnitValueA) + Number(selectedUnitValueB) / Math.sin(selectedUnitValueC)));
                 } else
                     perimeter = 0;
                 break;
@@ -774,21 +766,18 @@ function findParallelogramPerimeter(variableA, variableB, variableC, selectedUni
 function rhombusOption() {
     var rhombusOption = document.getElementById('rhombus-option').value;
     switch (rhombusOption) {
-        case 'sideAndHeight':
-            inputTags(2, 'Rhombus Area', 'rhombus-', 'perimeter', 'findRhombusArea', 0, ['a', 'h'], 0);
+        case 'side':
+            inputTags(1, 'Rhombus Perimeter', 'rhombus-', 'perimeter', 'findRhombusPerimeter', 0, ['a'], 0, 'rhombus4.svg');
             break;
         case 'diagonal':
-            inputTags(2, 'Rhombus Area', 'rhombus-', 'perimeter', 'findRhombusArea', 0, ['e', 'f'], 0);
-            break;
-        case 'sideAndAngle':
-            inputTags(1, 'Rhombus Area', 'rhombus-', 'perimeter', 'findRhombusArea', 1, ['a'], ['Alpha']);
+            inputTags(2, 'Rhombus Perimeter', 'rhombus-', 'perimeter', 'findRhombusPerimeter', 0, ['e', 'f'], 0 , 'rhombus2.svg');
             break;
         default:
             break;
     }
 }
 
-function findRhombusArea(variableA, variableB, selectedUnitA, selectedUnitB, selectedUnit2) {
+function findRhombusPerimeter(variableA, variableB, selectedUnitA, selectedUnitB, selectedUnit2) {
     if (variableA === undefined &&
         variableB === undefined &&
         selectedUnitA === undefined &&
@@ -806,17 +795,13 @@ function findRhombusArea(variableA, variableB, selectedUnitA, selectedUnitB, sel
 
         var rhombusOption = document.getElementById('rhombus-option').value;
         switch (rhombusOption) {
-            case 'sideAndHeight':
+            case 'side':
                 var selectedUnitValueB = variableUnitChange(variableB, selectedUnitB);
-                perimeter = (selectedUnitValueA * selectedUnitValueB);
+                perimeter =  4 * selectedUnitValueA;
                 break;
             case 'diagonal':
                 var selectedUnitValueB = variableUnitChange(variableB, selectedUnitB);
-                perimeter = (selectedUnitValueA * selectedUnitValueB) / 2;
-                break;
-            case 'sideAndAngle':
-                var selectedUnitValueB = variableAngleChange(variableB, selectedUnitB);
-                perimeter = (selectedUnitValueA * selectedUnitValueA) * Math.sin(selectedUnitValueB);
+                perimeter = 2 * Math.sqrt((selectedUnitValueA * selectedUnitValueA) + (selectedUnitValueB * selectedUnitValueB));
                 break;
             default:
                 break;
@@ -826,21 +811,7 @@ function findRhombusArea(variableA, variableB, selectedUnitA, selectedUnitB, sel
     }
 }
 
-function kiteOption() {
-    var kiteOption = document.getElementById('kite-option').value;
-    switch (kiteOption) {
-        case 'diagonal':
-            inputTags(2, 'Kite Area', 'kite-', 'perimeter', 'findKiteArea', 0, ['e', 'f'], 0);
-            break;
-        case 'unequalSideAndAngle':
-            inputTags(2, 'Kite Area', 'kite-', 'perimeter', 'findKiteArea', 1, ['a', 'b'], ['Alpha']);
-            break;
-        default:
-            break;
-    }
-}
-
-function findKiteArea(variableA, variableB, variableC, selectedUnitA, selectedUnitB, selectedUnitC, selectedUnit2) {
+function findKitePerimeter(variableA, variableB, selectedUnitA, selectedUnitB, selectedUnit2) {
     if (variableA === undefined &&
         variableB === undefined &&
         variableC === undefined &&
@@ -865,71 +836,19 @@ function findKiteArea(variableA, variableB, variableC, selectedUnitA, selectedUn
         var selectedUnitValueB = variableUnitChange(variableB, selectedUnitB);
         var perimeter;
 
-        var kiteOption = document.getElementById('kite-option').value;
-        switch (kiteOption) {
-            case 'diagonal':
-                perimeter = (selectedUnitValueA * selectedUnitValueB) / 2;
-                break;
-            case 'unequalSideAndAngle':
-                console.log("Variable C:-" + variableC);
-                console.log("Selected Unit C:-" + selectedUnitC);
-                var selectedUnitValueC = variableAngleChange(variableC, selectedUnitC);
-                console.log(selectedUnitValueA + '\n' + selectedUnitValueB + '\n' + selectedUnitValueC);
-                if (selectedUnitValueA !== '' && selectedUnitValueB !== '' && selectedUnitValueC !== undefined) {
-                    perimeter = ((selectedUnitValueA * selectedUnitValueB) * selectedUnitValueC);
-                } else {
-                    perimeter = 0;
-                }
-                break;
-            default:
-                break;
-        }
+        perimeter = 2 * (Number(selectedUnitValueA) + Number(selectedUnitValueB));
         var selectedUnit2Value = perimeterUnitChange(perimeter, selectedUnit2);
         document.getElementById('perimeter').value = selectedUnit2Value;
     }
 }
 
-function findPentagonArea(variableA, selectedUnitA, selectedUnit2) {
-    if (variableA === undefined && selectedUnitA === undefined && selectedUnit2 === undefined) {
-        var pentagonValue = document.getElementById('pentagon-A').value;
-        document.getElementById('pentagon-A').setAttribute('data-a', pentagonValue);
-        unitChange();
-    } else {
-        var selectedUnitValue = variableUnitChange(variableA, selectedUnitA);
-        var perimeter = (selectedUnitValue * selectedUnitValue) * Math.sqrt(25 + (10 * Math.sqrt(5))) / 4;
-        var selectedUnit2Value = perimeterUnitChange(perimeter, selectedUnit2);
-        document.getElementById('perimeter').value = selectedUnit2Value;
-    }
-}
-
-function findHexagonArea(variableA, selectedUnitA, selectedUnit2) {
-    if (variableA === undefined && selectedUnitA === undefined && selectedUnit2 === undefined) {
-        var hexagonValue = document.getElementById('hexagon-A').value;
-        document.getElementById('hexagon-A').setAttribute('data-a', hexagonValue);
-        unitChange();
-    } else {
-        var selectedUnitValue = variableUnitChange(variableA, selectedUnitA);
-        var perimeter = (selectedUnitValue * selectedUnitValue) * 3/2 * Math.sqrt(3);
-        var selectedUnit2Value = perimeterUnitChange(perimeter, selectedUnit2);
-        document.getElementById('perimeter').value = selectedUnit2Value;
-    }
-}
-
-function findOctagonArea(variableA, selectedUnitA, selectedUnit2) {
-    if (variableA === undefined && selectedUnitA === undefined && selectedUnit2 === undefined) {
-        var octagonValue = document.getElementById('octagon-A').value;
-        document.getElementById('octagon-A').setAttribute('data-a', octagonValue);
-        unitChange();
-    } else {
-        var selectedUnitValue = variableUnitChange(variableA, selectedUnitA);
-        var perimeter = (selectedUnitValue * selectedUnitValue) * 2 * (1 + Math.sqrt(2));
-        var selectedUnit2Value = perimeterUnitChange(perimeter, selectedUnit2);
-        document.getElementById('perimeter').value = selectedUnit2Value;
-    }
-}
-
-function findAnnulusArea(variableA, variableB, selectedUnitA, selectedUnitB, selectedUnit2) {
-    if (variableA === undefined && variableB === undefined && selectedUnitA === undefined && selectedUnitB === undefined && selectedUnit2 === undefined) {
+function findAnnulusPerimeter(variableA, variableB, selectedUnitA, selectedUnitB, selectedUnit2) {
+    if (variableA === undefined && 
+        variableB === undefined && 
+        selectedUnitA === undefined && 
+        selectedUnitB === undefined && 
+        selectedUnit2 === undefined
+    ) {
         var annulusValueA = document.getElementById('annulus-A').value;
         var annulusValueB = document.getElementById('annulus-B').value;
         document.getElementById('annulus-A').setAttribute('data-a', annulusValueA);
@@ -940,14 +859,14 @@ function findAnnulusArea(variableA, variableB, selectedUnitA, selectedUnitB, sel
         var selectedUnitValueB = variableUnitChange(variableB, selectedUnitB);
         if (selectedUnitValueA > selectedUnitValueB && selectedUnitValueA !== '' && selectedUnitValueB !== '') {
             document.getElementById('alert-message').classList.add("invisible");
-            var perimeter = 3.14 * ((selectedUnitValueA * selectedUnitValueA) - (selectedUnitValueB * selectedUnitValueB));
+            var perimeter = (2 * 3.14) * (Number(selectedUnitValueA) + Number(selectedUnitValueB));
         } else if (selectedUnitValueB > selectedUnitValueA) {
             document.getElementById('alert-message').classList.remove("invisible");
-            document.getElementById('alert-message').innerHTML = "A Should Be Greater Than B";
+            document.getElementById('alert-message').innerHTML = "R Should Be Greater Than r";
             perimeter = 0;
         } else {
             document.getElementById('alert-message').classList.remove("invisible");
-            document.getElementById('alert-message').innerHTML = "A Should Be Greater Than B";
+            document.getElementById('alert-message').innerHTML = "R Should Be Greater Than r";
             perimeter = 0;
         }
 
@@ -956,29 +875,38 @@ function findAnnulusArea(variableA, variableB, selectedUnitA, selectedUnitB, sel
     }
 }
 
-function findQuadrilateralArea(variableA, variableB, variableC, selectedUnitA, selectedUnitB, selectedUnitC, selectedUnit2) {
-    if (variableA === undefined &&
-        variableB === undefined &&
-        variableC === undefined &&
-        selectedUnitA === undefined &&
-        selectedUnitB === undefined &&
-        selectedUnitC === undefined &&
+function findPolygonPerimeter(variableA, variableB, selectedUnitA, selectedUnitB, selectedUnit2) {
+    if (variableA === undefined && 
+        variableB === undefined && 
+        selectedUnitA === undefined && 
+        selectedUnitB === undefined && 
         selectedUnit2 === undefined
     ) {
-        var quadrilateralValueA = document.getElementById('quadrilateral-A').value;
-        var quadrilateralValueB = document.getElementById('quadrilateral-B').value;
-        var quadrilateralValueC = document.getElementById('quadrilateral-C').value;
+        var polygonValueA = document.getElementById('polygon-A').value;
+        var polygonValueB = document.getElementById('polygon-B').value;
 
-        document.getElementById('quadrilateral-A').setAttribute('data-a', quadrilateralValueA);
-        document.getElementById('quadrilateral-B').setAttribute('data-b', quadrilateralValueB);
-        document.getElementById('quadrilateral-C').setAttribute('data-c', quadrilateralValueC);
+        document.getElementById('polygon-A').setAttribute('data-a', polygonValueA);
+        document.getElementById('polygon-B').setAttribute('data-b', polygonValueB);
         unitChange();
     } else {
         var selectedUnitValueA = variableUnitChange(variableA, selectedUnitA);
         var selectedUnitValueB = variableUnitChange(variableB, selectedUnitB);
-        var selectedUnitValueC = variableAngleChange(variableC, selectedUnitC);
-        var perimeter;
-        perimeter = selectedUnitValueA * selectedUnitValueB * Math.sin(selectedUnitValueC);
+
+        console.log(selectedUnitValueA);
+
+        if (selectedUnitValueA >= 3 && selectedUnitValueA !== '' && selectedUnitValueB !== '') {
+            document.getElementById('alert-message').classList.add("invisible");
+            var perimeter = (selectedUnitValueA * selectedUnitValueB);
+        } else {
+            if (selectedUnitValueA < 3) {
+                document.getElementById('alert-message').classList.remove("invisible");
+                document.getElementById('alert-message').innerHTML = "You Can't Construct Such Polygon";
+            } else {
+                document.getElementById('alert-message').classList.add("invisible");
+            }
+            perimeter = 0;
+        }
+
         var selectedUnit2Value = perimeterUnitChange(perimeter, selectedUnit2);
         document.getElementById('perimeter').value = selectedUnit2Value;
     }

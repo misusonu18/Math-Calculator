@@ -8,15 +8,17 @@ include 'layouts/header.php';
         </a>
     </div>
 
-    <div class="row justify-content-center mt-3">
-        <label class="h1">Perimeter Calculator </label>
+    <div class="row d-flex justify-content-center mt-3">
+        <p class="h1">Perimeter Calculator</p>
     </div>
+    <hr class="bg-primary"/>
+    
     <div class="card mt-5">
         <div class="card-header text-dark" id="card-header">
             <div class="d-flex justify-content-between align-items-center">
-                <div> Shape </div>
+                <label class="h4 pt-2"> Shape </label>
 
-                <div>
+                <div class="col-3">
                    <select class="custom-select custom-select-sm border border-info"
                         onchange="selectedShape()"
                         id="shape-select"
@@ -32,28 +34,31 @@ include 'layouts/header.php';
                         <option value="parallelogram">Parallelogram</option>
                         <option value="rhombus">Rhombus</option>
                         <option value="kite">Kite</option>
-                        <option value="pentagon">Pentagon</option>
-                        <option value="hexagon">Hexagon</option>
-                        <option value="octagon">Octagon</option>
                         <option value="annulus">Annulus (Ring)</option>
-                        <option value="quadrilateral">irregular quadrilateral</option>
                         <option value="polygon">Polygon</option>
                     </select>
                 </div>
             </div>
 
             <div class="mt-2 d-flex justify-content-between align-items-center invisible" id="find-given-perimeter">
-                <div id="find-perimeter-given"> Find Perimeter Given </div>
+                <label class="h4 pt-2" id="find-perimeter-given"> Find Perimeter Given </label>
 
                 <div id="find-perimeter-option"> </div>
             </div>
         </div>
 
-        <div class="card-body text-white bg-dark">
+        <div class="card-body text-white bg-secondary">
             <p class="alert alert-danger invisible" id="alert-message"></p>
 
-            <div id="perimeter-calculation"></div>
+            <p class="invisible h4" id="formula"></p>
+
+            <div class="justify-content-between" id="perimeter-image">
+                <img class="img-fluid" id="image"/>
+            </div>
+
+            <div id="perimeter-calculation" class="pl-2 pt-4"></div>
         </div>
+        
     </div>
 </div>
 <?php
