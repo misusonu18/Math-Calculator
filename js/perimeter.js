@@ -1,18 +1,19 @@
 var body = document.getElementsByTagName('body')[0];
 body.setAttribute('onload', 'selectedShape()');
 
+
 function selectedShape() {
     var selectedShape = document.getElementById('shape-select').value;
-    var findGivenAreaDiv = document.getElementById('find-given-area');
-    document.getElementById('find-area-option').innerHTML = "";
-    findGivenAreaDiv.classList.add("invisible");
+    var findGivenPerimeterDiv = document.getElementById('find-given-perimeter');
+    document.getElementById('find-perimeter-option').innerHTML = "";
+    findGivenPerimeterDiv.classList.add("invisible");
 
     switch (selectedShape) {
         case 'square':
-            inputTags(1, 'Square Area', 'square-', 'area', 'findSquareArea', 0);
+            inputTags(1, 'Square Perimeter', 'square-', 'perimeter', 'findSquarePerimeter', 0, ['a'], 0);
             break;
         case 'rectangle':
-            inputTags(2, 'Rectangle Area', 'rectangle-', 'area', 'findRectangleArea', 0);
+            inputTags(2, 'Rectangle Perimeter', 'rectangle-', 'perimeter', 'findRectanglePerimeter', 0, ['a', 'b'], 0);
             break;
         case 'triangle':
             var select = document.createElement("select");
@@ -21,27 +22,27 @@ function selectedShape() {
             select.setAttribute("class", "custom-select custom-select-sm inline border border-dark");
             select.setAttribute('onchange', 'triangleOption()');
 
-            select.options.add(new Option("Base And Height", "baseAndHeight", true, true));
-            select.options.add(new Option("Three Sides (SSS)", "threeSides", false, false));
+            select.options.add(new Option("Three Sides (SSS)", "threeSides", true, true));
             select.options.add(new Option("Two Sides + Angle Between Them (SSA)", "twoSideAngle", false, false));
             select.options.add(new Option("Two Angle + Side Between Them (SAA)", "twoAngleSide", false, false));
 
-            findGivenAreaDiv.classList.remove("invisible");
-            document.getElementById('find-area-option').appendChild(select);
+            findGivenPerimeterDiv.classList.remove("invisible");
+            document.getElementById('find-perimeter-option').appendChild(select);
 
             triangleOption();
             break;
         case 'circle':
-            inputTags(1, 'Circle Area', 'circle-', 'area', 'findCircleArea', 0);
+            inputTags(1, 'Circle Perimeter', 'circle-', 'perimeter', 'findCirclePerimeter', 0, ['r'], 0);
             break;
         case 'semi-circle':
-            inputTags(1, 'Semi-Circle Area', 'semi-circle-', 'area', 'findSemiCircleArea', 0);
+            inputTags(1, 'Semi-Circle Perimeter', 'semi-circle-', 'perimeter', 'findSemiCirclePerimeter', 0, ['r'], 0);
             break;
         case 'ellipse':
-            inputTags(2, 'Ellipse Area', 'ellipse-', 'area', 'findEllipseArea', 0);
+            inputTags(2, 'Ellipse Perimeter', 'ellipse-', 'perimeter', 'findEllipsePerimeter', 0, ['a', 'b'], 0);
             break;
         case 'trapezoid':
-            inputTags(3, 'Trapezoid Area', 'trapezoid-', 'area', 'findTrapezoidArea', 0);
+            inputTags(4, 'Trapezoid Perimeter', 'trapezoid-', 'perimeter', 'findTrapezoidPerimeter', 0, ['a', 'b', 'c',
+            'd'], 0);
             break;
         case 'parallelogram':
             var select = document.createElement("select");
@@ -50,12 +51,12 @@ function selectedShape() {
             select.setAttribute("class", "custom-select custom-select-sm inline border border-dark");
             select.setAttribute('onchange', 'parallelogramOption()');
 
-            select.options.add(new Option("Base And Height", "baseAndHeight", true, true));
-            select.options.add(new Option("Two Sides + Angle Between Them", "twoSideAngle", false, false));
-            select.options.add(new Option("Two Diagonals + Side Between Them", "twoDiagonalSide", false, false));
+            select.options.add(new Option("Sides", "side", true, true));
+            select.options.add(new Option("One Sides And Diagonals", "oneSideAndDiagonal", false, false));
+            select.options.add(new Option("Base, Height + Any Parallelogram Angle", "baseHeightAndAngle", false, false));
 
-            findGivenAreaDiv.classList.remove("invisible");
-            document.getElementById('find-area-option').appendChild(select);
+            findGivenPerimeterDiv.classList.remove("invisible");
+            document.getElementById('find-perimeter-option').appendChild(select);
 
             parallelogramOption();
             break;
@@ -70,8 +71,8 @@ function selectedShape() {
             select.options.add(new Option("Diagonals", "diagonal", false, false));
             select.options.add(new Option("Side and Any Angle", "sideAndAngle", false, false));
 
-            findGivenAreaDiv.classList.remove("invisible");
-            document.getElementById('find-area-option').appendChild(select);
+            findGivenPerimeterDiv.classList.remove("invisible");
+            document.getElementById('find-perimeter-option').appendChild(select);
 
             rhombusOption();
             break;
@@ -85,48 +86,48 @@ function selectedShape() {
             select.options.add(new Option("Diagonals", "diagonal", true, true));
             select.options.add(new Option("Two Unequal Sides + Angle Between Them", "unequalSideAndAngle", false, false));
 
-            findGivenAreaDiv.classList.remove("invisible");
-            document.getElementById('find-area-option').appendChild(select);
+            findGivenPerimeterDiv.classList.remove("invisible");
+            document.getElementById('find-perimeter-option').appendChild(select);
 
             kiteOption();
             break;
         case 'pentagon':
-            inputTags(1, 'Pentagon Area', 'pentagon-', 'area', 'findPentagonArea', 0);
+            inputTags(1, 'Pentagon Area', 'pentagon-', 'perimeter', 'findPentagonArea', 0, ['a'], 0);
             break;
         case 'hexagon':
-            inputTags(1, 'Hexagon Area', 'hexagon-', 'area', 'findHexagonArea', 0);
+            inputTags(1, 'Hexagon Area', 'hexagon-', 'perimeter', 'findHexagonArea', 0, ['a'], 0);
             break;
         case 'octagon':
-            inputTags(1, 'Octagon Area', 'octagon-', 'area', 'findOctagonArea', 0);
+            inputTags(1, 'Octagon Area', 'octagon-', 'perimeter', 'findOctagonArea', 0, ['a'], 0);
             break;
         case 'annulus':
-            inputTags(2, 'Annulus Area', 'annulus-', 'area', 'findAnnulusArea', 0);
+            inputTags(2, 'Annulus Area', 'annulus-', 'perimeter', 'findAnnulusArea', 0, ['R', 'r'], 0);
             break;
         case 'quadrilateral':
-            inputTags(2, 'Quadrilateral Area', 'quadrilateral-', 'area', 'findQuadrilateralArea', 1);
+            inputTags(2, 'Quadrilateral Area', 'quadrilateral-', 'perimeter', 'findQuadrilateralArea', 1, ['e', 'f'], ['Alpha']);
             break;
         case 'polygon':
-            inputTags(2, 'Polygon Area', 'polygon-', 'area', 'findPolygonArea', 0);
+            inputTags(2, 'Polygon Area', 'polygon-', 'perimeter', 'findPolygonArea', 0, ['a'], 0);
             break;
         default:
             break;
     }
 }
 
-function inputTags(totalInputBox, totalInputBoxName, inputBoxId, totalInputBoxId, functionName, inputBoxOfAngle) {
-    var div = document.getElementById("area-calculation");
+function inputTags(totalInputBox, totalInputBoxName, inputBoxId, totalInputBoxId, functionName, inputBoxOfAngle, variableName, variableAngleName) {
+    var div = document.getElementById("perimeter-calculation");
 
     while (div.hasChildNodes()) {
         div.removeChild(div.lastChild);
     }
     var i = 0, j = 0;
     do {
-        div.appendChild(document.createTextNode(String.fromCharCode(65 + i)));
+        div.appendChild(document.createTextNode(variableName[i]));
         div.appendChild(document.createElement("br"));
         var a = document.createElement("input");
         a.type = "text";
         a.setAttribute('id', inputBoxId + String.fromCharCode(65 + i));
-        a.setAttribute('class', 'form-control form-control-sm d-inline text-right col-3');
+        a.setAttribute('class', 'form-control form-control-sm d-inline mb-3 text-right col-3');
         a.setAttribute('onkeypress', "return restrictAlphabets(event)");
         a.setAttribute('onkeyup', functionName + '()');
         div.appendChild(a);
@@ -136,12 +137,12 @@ function inputTags(totalInputBox, totalInputBoxName, inputBoxId, totalInputBoxId
     } while (i < totalInputBox);
 
     for (let j = 0; j < inputBoxOfAngle; j++) {
-        div.appendChild(document.createTextNode('Angle ' + String.fromCharCode(65 + j + i)));
+        div.appendChild(document.createTextNode('Angle ' + variableAngleName[j]));
         div.appendChild(document.createElement("br"));
         var a = document.createElement("input");
         a.type = "text";
         a.setAttribute('id', inputBoxId + String.fromCharCode(65 + j + i));
-        a.setAttribute('class', 'form-control form-control-sm d-inline text-right col-3');
+        a.setAttribute('class', 'form-control form-control-sm d-inline mb-3 text-right col-3');
         a.setAttribute('onkeyup', functionName + '()');
         div.appendChild(a);
         angleName(inputBoxId, String.fromCharCode(65 + j + i));
@@ -150,11 +151,11 @@ function inputTags(totalInputBox, totalInputBoxName, inputBoxId, totalInputBoxId
 
     div.appendChild(document.createTextNode(totalInputBoxName));
     div.appendChild(document.createElement("br"));
-    var area = document.createElement("input");
-    area.type = "text";
-    area.setAttribute('id', totalInputBoxId);
-    area.setAttribute('class', 'form-control form-control-sm d-inline text-right col-3');
-    div.appendChild(area);
+    var perimeter = document.createElement("input");
+    perimeter.type = "text";
+    perimeter.setAttribute('id', totalInputBoxId);
+    perimeter.setAttribute('class', 'form-control form-control-sm d-inline text-right col-3');
+    div.appendChild(perimeter);
     unitSquareName(totalInputBoxId);
 }
 
@@ -165,7 +166,7 @@ function unitName(inputIdName, dataAttributeVariableName) {
     select.setAttribute("data-" + dataAttributeVariableName, inputIdName + dataAttributeVariableName);
     select.setAttribute("class", "custom-select custom-select-sm inline col-2-custom select-custom border border-light text-white bg-dark");
     select.setAttribute('onchange', 'unitChange()');
-    document.getElementById('area-calculation').appendChild(select);
+    document.getElementById('perimeter-calculation').appendChild(select);
 
     select.options.add(new Option("Centimeter", "centimeter", true, true));
     select.options.add(new Option("Meter", "meter", false, false));
@@ -177,7 +178,7 @@ function unitName(inputIdName, dataAttributeVariableName) {
     select.options.add(new Option("Miles", "miles", false, false));
 
     frag.appendChild(select);
-    document.getElementById('area-calculation').appendChild(frag);
+    document.getElementById('perimeter-calculation').appendChild(frag);
 }
 
 function unitSquareName(inputIdName) {
@@ -185,9 +186,9 @@ function unitSquareName(inputIdName) {
     var select = document.createElement("select");
     select.setAttribute("id", "unit-2-select");
     select.setAttribute("class", "custom-select custom-select-sm inline col-2-custom select-custom border border-light text-white bg-dark");
-    select.setAttribute("data-area", inputIdName);
+    select.setAttribute("data-perimeter", inputIdName);
     select.setAttribute('onchange', 'unitChange()');
-    document.getElementById('area-calculation').appendChild(select);
+    document.getElementById('perimeter-calculation').appendChild(select);
 
     select.options.add(new Option("Centimeter2", "centimeter2", true, true));
     select.options.add(new Option("Meter2", "meter2", false, false));
@@ -200,7 +201,7 @@ function unitSquareName(inputIdName) {
 
     frag.appendChild(select);
 
-    document.getElementById('area-calculation').appendChild(frag);
+    document.getElementById('perimeter-calculation').appendChild(frag);
 }
 
 function angleName(inputIdName, dataAttributeVariableName) {
@@ -210,13 +211,13 @@ function angleName(inputIdName, dataAttributeVariableName) {
     select.setAttribute("data-" + dataAttributeVariableName, inputIdName + dataAttributeVariableName);
     select.setAttribute("class", "custom-select custom-select-sm inline col-2-custom select-custom border border-light text-white bg-dark");
     select.setAttribute('onchange', 'unitChange()');
-    document.getElementById('area-calculation').appendChild(select);
+    document.getElementById('perimeter-calculation').appendChild(select);
 
     select.options.add(new Option("Degree", "degree", true, true));
     select.options.add(new Option("Radian", "radian", false, false));
 
     frag.appendChild(select);
-    document.getElementById('area-calculation').appendChild(frag);
+    document.getElementById('perimeter-calculation').appendChild(frag);
 }
 
 function unitChange() {
@@ -232,6 +233,10 @@ function unitChange() {
         var selectedUnitC = document.getElementById('unit-select-C').value;
     }
 
+    if (document.getElementById('unit-select-D') !== null) {
+        var selectedUnitD = document.getElementById('unit-select-D').value;
+    }
+
     if (document.getElementById('angle-select-B') !== null) {
         var selectedAngleB = document.getElementById('angle-select-B').value;
     }
@@ -243,12 +248,12 @@ function unitChange() {
     switch (selectedShape) {
         case 'square':
             var inputA = document.getElementById("square-A").getAttribute('data-a');
-            findSquareArea(inputA, selectedUnitA, selectedUnit2);
+            findSquarePerimeter(inputA, selectedUnitA, selectedUnit2);
             break;
         case 'rectangle':
             var inputA = document.getElementById("rectangle-A").getAttribute('data-a');
             var inputB = document.getElementById("rectangle-B").getAttribute('data-b');
-            findRectangleArea(inputA, inputB, selectedUnitA, selectedUnitB, selectedUnit2);
+            findRectanglePerimeter(inputA, inputB, selectedUnitA, selectedUnitB, selectedUnit2);
             break;
         case 'triangle':
             var triangleOption = document.getElementById('triangle-option').value;
@@ -256,20 +261,17 @@ function unitChange() {
             var inputB = document.getElementById("triangle-B").getAttribute('data-b');
 
             switch (triangleOption) {
-                case 'baseAndHeight':
-                    findTriangleArea(inputA, inputB, selectedUnitA, selectedUnitB, selectedUnit2);
-                    break;
                 case 'threeSides':
                     var inputC = document.getElementById("triangle-C").getAttribute('data-c');
-                    findTriangleArea(inputA, inputB, inputC, selectedUnitA, selectedUnitB, selectedUnitC, selectedUnit2);
+                    findTrianglePerimeter(inputA, inputB, inputC, selectedUnitA, selectedUnitB, selectedUnitC, selectedUnit2);
                     break;
                 case 'twoSideAngle':
                     var inputC = document.getElementById("triangle-C").getAttribute('data-c');
-                    findTriangleArea(inputA, inputB, inputC, selectedUnitA, selectedUnitB, selectedAngleC, selectedUnit2);
+                    findTrianglePerimeter(inputA, inputB, inputC, selectedUnitA, selectedUnitB, selectedAngleC, selectedUnit2);
                     break;
                 case 'twoAngleSide':
                     var inputC = document.getElementById("triangle-C").getAttribute('data-c');
-                    findTriangleArea(inputA, inputB, inputC, selectedUnitA, selectedAngleB, selectedAngleC, selectedUnit2);
+                    findTrianglePerimeter(inputA, inputB, inputC, selectedUnitA, selectedAngleB, selectedAngleC, selectedUnit2);
                     break;
                 default:
                     break;
@@ -277,22 +279,23 @@ function unitChange() {
             break;
         case 'circle':
             var inputA = document.getElementById("circle-A").getAttribute('data-a');
-            resultOfCircleArea(inputA, selectedUnitA, selectedUnit2);
+            findCirclePerimeter(inputA, selectedUnitA, selectedUnit2);
             break;
         case 'semi-circle':
             var inputA = document.getElementById("semi-circle-A").getAttribute('data-a');
-            findSemiCircleArea(inputA, selectedUnitA, selectedUnit2);
+            findSemiCirclePerimeter(inputA, selectedUnitA, selectedUnit2);
             break;
         case 'ellipse':
             var inputA = document.getElementById("ellipse-A").getAttribute('data-a');
             var inputB = document.getElementById("ellipse-B").getAttribute('data-b');
-            findEllipseArea(inputA, inputB, selectedUnitA, selectedUnitB, selectedUnit2);
+            findEllipsePerimeter(inputA, inputB, selectedUnitA, selectedUnitB, selectedUnit2);
             break;
         case 'trapezoid':
             var inputA = document.getElementById("trapezoid-A").getAttribute('data-a');
             var inputB = document.getElementById("trapezoid-B").getAttribute('data-b');
             var inputC = document.getElementById("trapezoid-C").getAttribute('data-c');
-            findTrapezoidArea(inputA, inputB, inputC, selectedUnitA, selectedUnitB, selectedUnitC, selectedUnit2);
+            var inputD = document.getElementById("trapezoid-D").getAttribute('data-d');
+            findTrapezoidPerimeter(inputA, inputB, inputC, inputD, selectedUnitA, selectedUnitB, selectedUnitC, selectedUnitD, selectedUnit2);
             break;
         case 'parallelogram':
             var parallelogramOption = document.getElementById('parallelogram-option').value;
@@ -300,16 +303,16 @@ function unitChange() {
             var inputB = document.getElementById("parallelogram-B").getAttribute('data-b');
 
             switch (parallelogramOption) {
-                case 'baseAndHeight':
-                    findParallelogramArea(inputA, inputB, null, selectedUnitA, selectedUnitB, null, selectedUnit2);
+                case 'side':
+                    findParallelogramPerimeter(inputA, inputB, null, selectedUnitA, selectedUnitB, null, selectedUnit2);
                     break;
-                case 'twoSideAngle':
+                case 'oneSideAndDiagonal':
                     var inputC = document.getElementById("parallelogram-C").getAttribute('data-c');
-                    findParallelogramArea(inputA, inputB, inputC, selectedUnitA, selectedUnitB, selectedAngleC, selectedUnit2);
+                    findParallelogramPerimeter(inputA, inputB, inputC, selectedUnitA, selectedUnitB, selectedUnitC, selectedUnit2);
                     break;
-                case 'twoDiagonalSide':
+                case 'baseHeightAndAngle':
                     var inputC = document.getElementById("parallelogram-C").getAttribute('data-c');
-                    findParallelogramArea(inputA, inputB, inputC, selectedUnitA, selectedUnitB, selectedAngleC, selectedUnit2);
+                    findParallelogramPerimeter(inputA, inputB, inputC, selectedUnitA, selectedUnitB, selectedAngleC, selectedUnit2);
                     break;
                 default:
                     break;
@@ -435,32 +438,32 @@ function variableAngleChange(variableA, selectedAngle) {
     return selectedAngleValue;
 }
 
-function areaUnitChange(area, selectedUnit2) {
+function perimeterUnitChange(perimeter, selectedUnit2) {
     var selectedUnit2Value;
     switch (selectedUnit2) {
         case 'centimeter2':
-            selectedUnit2Value = area;
+            selectedUnit2Value = perimeter;
             break;
         case 'meter2':
-            selectedUnit2Value = area / 10000;
+            selectedUnit2Value = perimeter / 10000;
             break;
         case 'kilometer2':
-            selectedUnit2Value = area / 10000000000;
+            selectedUnit2Value = perimeter / 10000000000;
             break;
         case 'feet2':
-            selectedUnit2Value = area / 929;
+            selectedUnit2Value = perimeter / 929;
             break;
         case 'yard2':
-            selectedUnit2Value = area / 8361;
+            selectedUnit2Value = perimeter / 8361;
             break;
         case 'inches2':
-            selectedUnit2Value = area / 6.452;
+            selectedUnit2Value = perimeter / 6.452;
             break;
         case 'millimeter2':
-            selectedUnit2Value = area * 10;
+            selectedUnit2Value = perimeter * 10;
             break;
         case 'miles2':
-            selectedUnit2Value = area / 2.59e+10;
+            selectedUnit2Value = perimeter / 2.59e+10;
             break;
         default:
             break;
@@ -468,20 +471,20 @@ function areaUnitChange(area, selectedUnit2) {
     return selectedUnit2Value;
 }
 
-function findSquareArea(variableA, selectedUnitA, selectedUnit2) {
+function findSquarePerimeter(variableA, selectedUnitA, selectedUnit2) {
     if (variableA === undefined && selectedUnitA === undefined && selectedUnit2 === undefined) {
         var squareValue = document.getElementById('square-A').value;
         document.getElementById('square-A').setAttribute('data-a', squareValue);
         unitChange();
     } else {
         var selectedUnitValue = variableUnitChange(variableA, selectedUnitA);
-        var area = selectedUnitValue * selectedUnitValue;
-        var selectedUnit2Value = areaUnitChange(area, selectedUnit2);
-        document.getElementById('area').value = selectedUnit2Value;
+        var perimeter = selectedUnitValue * 4;
+        var selectedUnit2Value = perimeterUnitChange(perimeter, selectedUnit2);
+        document.getElementById('perimeter').value = selectedUnit2Value;
     }
 }
 
-function findRectangleArea(variableA, variableB, selectedUnitA, selectedUnitB, selectedUnit2) {
+function findRectanglePerimeter(variableA, variableB, selectedUnitA, selectedUnitB, selectedUnit2) {
     if (
         variableA === undefined &&
         variableB === undefined &&
@@ -497,33 +500,36 @@ function findRectangleArea(variableA, variableB, selectedUnitA, selectedUnitB, s
     } else {
         var selectedUnitValueA = variableUnitChange(variableA, selectedUnitA);
         var selectedUnitValueB = variableUnitChange(variableB, selectedUnitB);
-        var area = selectedUnitValueA * selectedUnitValueB;
-        var selectedUnit2Value = areaUnitChange(area, selectedUnit2);
-        document.getElementById('area').value = selectedUnit2Value;
+        var perimeter;
+
+        if (selectedUnitValueA != '' && selectedUnitValueB !== '') {
+            perimeter = (Number(selectedUnitValueA) + Number(selectedUnitValueB)) * 2;
+        } else {
+            perimeter = 0;
+        }
+        var selectedUnit2Value = perimeterUnitChange(perimeter, selectedUnit2);
+        document.getElementById('perimeter').value = selectedUnit2Value;
     }
 }
 
 function triangleOption() {
     var triangleOption = document.getElementById('triangle-option').value;
     switch (triangleOption) {
-        case 'baseAndHeight':
-            inputTags(2, 'Triangle Area', 'triangle-', 'area', 'findTriangleArea');
-            break;
         case 'threeSides':
-            inputTags(3, 'Triangle Area', 'triangle-', 'area', 'findTriangleArea', 0);
+            inputTags(3, 'Triangle Perimeter', 'triangle-', 'perimeter', 'findTrianglePerimeter', 0, ['a', 'b', 'c'], 0);
             break;
         case 'twoSideAngle':
-            inputTags(2, 'Triangle Area', 'triangle-', 'area', 'findTriangleArea', 1);
+            inputTags(2, 'Triangle Perimeter', 'triangle-', 'perimeter', 'findTrianglePerimeter', 1, ['a', 'b'], ['Gamma']);
             break;
         case 'twoAngleSide':
-            inputTags(1, 'Triangle Area', 'triangle-', 'area', 'findTriangleArea', 2);
+            inputTags(1, 'Triangle Perimeter', 'triangle-', 'perimeter', 'findTrianglePerimeter', 2, ['a'], ['Beta', 'Gamma']);
             break;
         default:
             break;
     }
 }
 
-function findTriangleArea(variableA, variableB, variableC, selectedUnitA, selectedUnitB, selectedUnitC, selectedUnit2) {
+function findTrianglePerimeter(variableA, variableB, variableC, selectedUnitA, selectedUnitB, selectedUnitC, selectedUnit2) {
     if (
         variableA === undefined &&
         variableB === undefined &&
@@ -535,46 +541,52 @@ function findTriangleArea(variableA, variableB, variableC, selectedUnitA, select
     ) {
         var inputTagValueA = document.getElementById('triangle-A').value;
         var inputTagValueB = document.getElementById('triangle-B').value;
-
-        if (document.getElementById('triangle-C')) {
-            var inputTagValueC = document.getElementById('triangle-C').value;
-            document.getElementById('triangle-C').setAttribute('data-c', inputTagValueC);
-        }
+        var inputTagValueC = document.getElementById('triangle-C').value;
 
         document.getElementById('triangle-A').setAttribute('data-a', inputTagValueA);
         document.getElementById('triangle-B').setAttribute('data-b', inputTagValueB);
+        document.getElementById('triangle-C').setAttribute('data-c', inputTagValueC);
         unitChange();
     } else {
         var selectedUnitValueA = variableUnitChange(variableA, selectedUnitA);
-        var selectedUnitValueB = variableUnitChange(variableB, selectedUnitB);
-        var area;
+        var perimeter;
 
         var triangleOption = document.getElementById('triangle-option').value;
         switch (triangleOption) {
-            case 'baseAndHeight':
-                area = (selectedUnitValueA * selectedUnitValueB) / 2;
-                break;
             case 'threeSides':
+                var selectedUnitValueB = variableUnitChange(variableB, selectedUnitB);
                 var selectedUnitValueC = variableUnitChange(variableC, selectedUnitC);
+
                 if (selectedUnitValueA !== null && selectedUnitValueB !== '' && selectedUnitValueC !== '') {
-                    var perimeter = (Number(selectedUnitValueA) + Number(selectedUnitValueB) + Number(selectedUnitValueC)) / 2;
-                    area = Math.sqrt(perimeter * (perimeter - selectedUnitValueA) * (perimeter - selectedUnitValueB) * (perimeter - selectedUnitValueC));
+                    perimeter = (Number(selectedUnitValueA) + Number(selectedUnitValueB) + Number(selectedUnitValueC));
                 } else
-                    area = 0;
+                    perimeter = 0;
                 break;
             case 'twoSideAngle':
+                console.log("A:" + variableA + "B:" + variableB + "C:" + variableC);
+                var selectedUnitValueB = variableUnitChange(variableB, selectedUnitB);
                 var selectedUnitValueC = variableAngleChange(variableC, selectedUnitC);
-                if (selectedUnitValueA !== null && selectedUnitValueB !== '' && selectedUnitValueC !== '') {
-                    area = ((selectedUnitValueA * selectedUnitValueB) * Math.sin(selectedUnitValueC)) / 2;
+                console.log("A:" + selectedUnitValueA);
+                console.log("B:" + selectedUnitValueB);
+                console.log("C:" + selectedUnitValueC);
+                if (selectedUnitValueA !== null && selectedUnitValueB !== null && selectedUnitValueC !== 0) {
+                    perimeter = Number(selectedUnitValueA) + Number(selectedUnitValueB) +
+                        Math.sqrt(Number(selectedUnitValueA * selectedUnitValueA) + Number(selectedUnitValueB * selectedUnitValueB) - Number(2 * selectedUnitValueA * selectedUnitValueB) *
+                        Math.cos(selectedUnitValueC));
                 } else
-                    area = 0;
+                    perimeter = 0;
                 break;
             case 'twoAngleSide':
+                var selectedUnitValueB = variableAngleChange(variableB, selectedUnitB);
                 var selectedUnitValueC = variableAngleChange(variableC, selectedUnitC);
-                if (selectedUnitValueA !== null && selectedUnitValueB !== '' && selectedUnitValueC !== '') {
-                    area = ((selectedUnitValueA * selectedUnitValueA) * Math.sin(selectedUnitValueB) * Math.sin(selectedUnitValueC)) / 2 * Math.sin(selectedUnitValueB + selectedUnitValueC);
+                console.log("A:" + selectedUnitValueA);
+                console.log("B:" + selectedUnitValueB);
+                console.log("C:" + selectedUnitValueC);
+
+                if (selectedUnitValueA !== null && selectedUnitValueB !== null && selectedUnitValueC !== 0) {
+                    perimeter = Number(selectedUnitValueA) + (selectedUnitValueA / Math.sin(Number(selectedUnitValueB) + Number(selectedUnitValueC)) * (Math.sin(selectedUnitValueB) + Math.sin(selectedUnitValueC)));
                 } else
-                    area = 0;
+                    perimeter = 0;
                 break;
             default:
                 break;
@@ -584,39 +596,39 @@ function findTriangleArea(variableA, variableB, variableC, selectedUnitA, select
 
         }
 
-        var selectedUnit2Value = areaUnitChange(area, selectedUnit2);
-        document.getElementById('area').value = selectedUnit2Value;
+        var selectedUnit2Value = perimeterUnitChange(perimeter, selectedUnit2);
+        document.getElementById('perimeter').value = selectedUnit2Value;
     }
 
 }
 
-function findCircleArea(variableA, selectedUnitA, selectedUnit2) {
+function findCirclePerimeter(variableA, selectedUnitA, selectedUnit2) {
     if (variableA === undefined && selectedUnitA === undefined && selectedUnit2 === undefined) {
         var circleValue = document.getElementById('circle-A').value;
         document.getElementById('circle-A').setAttribute('data-a', circleValue);
         unitChange();
     } else {
         var selectedUnitValue = variableUnitChange(variableA, selectedUnitA);
-        var area = selectedUnitValue * selectedUnitValue * 3.14;
-        var selectedUnit2Value = areaUnitChange(area, selectedUnit2);
-        document.getElementById('area').value = selectedUnit2Value;
+        var perimeter = selectedUnitValue * 3.14 * 2;
+        var selectedUnit2Value = perimeterUnitChange(perimeter, selectedUnit2);
+        document.getElementById('perimeter').value = selectedUnit2Value;
     }
 }
 
-function findSemiCircleArea(variableA, selectedUnitA, selectedUnit2) {
+function findSemiCirclePerimeter(variableA, selectedUnitA, selectedUnit2) {
     if (variableA === undefined && selectedUnitA === undefined && selectedUnit2 === undefined) {
         var semiCircleValue = document.getElementById('semi-circle-A').value;
         document.getElementById('semi-circle-A').setAttribute('data-a', semiCircleValue);
         unitChange();
     } else {
         var selectedUnitValue = variableUnitChange(variableA, selectedUnitA);
-        var area = (selectedUnitValue * selectedUnitValue * 3.14) / 2;
-        var selectedUnit2Value = areaUnitChange(area, selectedUnit2);
-        document.getElementById('area').value = selectedUnit2Value;
+        var perimeter = (selectedUnitValue * 3.14) + (2 * selectedUnitValue);
+        var selectedUnit2Value = perimeterUnitChange(perimeter, selectedUnit2);
+        document.getElementById('perimeter').value = selectedUnit2Value;
     }
 }
 
-function findEllipseArea(variableA, variableB, selectedUnitA, selectedUnitB, selectedUnit2) {
+function findEllipsePerimeter(variableA, variableB, selectedUnitA, selectedUnitB, selectedUnit2) {
     if ( variableA === undefined &&
         variableB === undefined &&
         selectedUnitA === undefined &&
@@ -631,61 +643,77 @@ function findEllipseArea(variableA, variableB, selectedUnitA, selectedUnitB, sel
     } else {
         var selectedUnitValueA = variableUnitChange(variableA, selectedUnitA);
         var selectedUnitValueB = variableUnitChange(variableB, selectedUnitB);
-        var area = selectedUnitValueA * selectedUnitValueB * 3.14;
-        var selectedUnit2Value = areaUnitChange(area, selectedUnit2);
-        document.getElementById('area').value = selectedUnit2Value;
+        var perimeter;
+
+        if (selectedUnitValueA !== null && selectedUnitValueB !== '') {
+            perimeter = 3.14 * [(3 * (Number(selectedUnitValueA) + Number(selectedUnitValueB)) - Math.sqrt(((3 * Number(selectedUnitValueA)) + Number(selectedUnitValueB)) * (Number(selectedUnitValueA) + (3 * Number(selectedUnitValueB)))))];
+        } else {
+            perimeter = 0;
+        }
+
+        var selectedUnit2Value = perimeterUnitChange(perimeter, selectedUnit2);
+        document.getElementById('perimeter').value = selectedUnit2Value;
     }
 }
 
-function findTrapezoidArea(variableA, variableB, variableC, selectedUnitA, selectedUnitB, selectedUnitC, selectedUnit2) {
+function findTrapezoidPerimeter(variableA, variableB, variableC, variableD, selectedUnitA, selectedUnitB, selectedUnitC, selectedUnitD, selectedUnit2) {
     if (
         variableA === undefined &&
         variableB === undefined &&
         variableC === undefined &&
+        variableD === undefined &&
         selectedUnitA === undefined &&
         selectedUnitB === undefined &&
         selectedUnitC === undefined &&
+        selectedUnitD === undefined &&
         selectedUnit2 === undefined
     ) {
         var inputTagValueA = document.getElementById('trapezoid-A').value;
         var inputTagValueB = document.getElementById('trapezoid-B').value;
         var inputTagValueC = document.getElementById('trapezoid-C').value;
+        var inputTagValueD = document.getElementById('trapezoid-D').value;
 
         document.getElementById('trapezoid-A').setAttribute('data-a', inputTagValueA);
         document.getElementById('trapezoid-B').setAttribute('data-b', inputTagValueB);
         document.getElementById('trapezoid-C').setAttribute('data-c', inputTagValueC);
+        document.getElementById('trapezoid-D').setAttribute('data-d', inputTagValueD);
         unitChange();
     } else {
         var selectedUnitValueA = variableUnitChange(variableA, selectedUnitA);
         var selectedUnitValueB = variableUnitChange(variableB, selectedUnitB);
         var selectedUnitValueC = variableUnitChange(variableC, selectedUnitC);
-        var area;
+        var selectedUnitValueD = variableUnitChange(variableD, selectedUnitD);
+        var perimeter;
 
-        area = ((Number(selectedUnitValueA) + Number(selectedUnitValueB)) * selectedUnitValueC ) / 2;
+        if (selectedUnitValueA !== "" && selectedUnitValueB !== "" && selectedUnitValueC !== "" && selectedUnitValueD !== "") {
+            perimeter = (Number(selectedUnitValueA) + Number(selectedUnitValueB) + Number(selectedUnitValueC) + Number(selectedUnitValueD));
+        } else {
+            perimeter = 0;
+        }
 
-        var selectedUnit2Value = areaUnitChange(area, selectedUnit2);
-        document.getElementById('area').value = selectedUnit2Value;
+        var selectedUnit2Value = perimeterUnitChange(perimeter, selectedUnit2);
+        document.getElementById('perimeter').value = selectedUnit2Value;
     }
 }
 
 function parallelogramOption() {
     var parallelogramOption = document.getElementById('parallelogram-option').value;
     switch (parallelogramOption) {
-        case 'baseAndHeight':
-            inputTags(2, 'Parallelogram Area', 'parallelogram-', 'area', 'findParallelogramArea');
+        case 'side':
+            inputTags(2, 'Parallelogram Perimeter', 'parallelogram-', 'perimeter', 'findParallelogramPerimeter', 0, ['a', 'b'], 0);
             break;
-        case 'twoSideAngle':
-            inputTags(2, 'Parallelogram Area', 'parallelogram-', 'area', 'findParallelogramArea', 1);
+        case 'oneSideAndDiagonal':
+            inputTags(3, 'Parallelogram Perimeter', 'parallelogram-', 'perimeter', 'findParallelogramPerimeter', 0, ['b', 'e', 'f'], 0);
             break;
-        case 'twoDiagonalSide':
-            inputTags(2, 'Parallelogram Area', 'parallelogram-', 'area', 'findParallelogramArea', 1);
+        case 'baseHeightAndAngle':
+            inputTags(2, 'Parallelogram Perimeter', 'parallelogram-', 'perimeter', 'findParallelogramPerimeter', 1, ['b', 'h'], ['Alpha']);
             break;
         default:
             break;
     }
 }
 
-function findParallelogramArea(variableA, variableB, variableC, selectedUnitA, selectedUnitB, selectedUnitC, selectedUnit2) {
+function findParallelogramPerimeter(variableA, variableB, variableC, selectedUnitA, selectedUnitB, selectedUnitC, selectedUnit2) {
     if (
         variableA === undefined &&
         variableB === undefined &&
@@ -709,33 +737,37 @@ function findParallelogramArea(variableA, variableB, variableC, selectedUnitA, s
     } else {
         var selectedUnitValueA = variableUnitChange(variableA, selectedUnitA);
         var selectedUnitValueB = variableUnitChange(variableB, selectedUnitB);
-        var area;
+        var perimeter;
 
         var parallelogramOption = document.getElementById('parallelogram-option').value;
         switch (parallelogramOption) {
-            case 'baseAndHeight':
-                area = (selectedUnitValueA * selectedUnitValueB);
+            case 'side':
+                if (selectedUnitValueA !== '' && selectedUnitValueB !== '') {
+                    perimeter = (Number(selectedUnitValueA) + Number(selectedUnitValueB)) * 2;
+                } else {
+                    perimeter = 0;
+                }
                 break;
-            case 'twoSideAngle':
+            case 'oneSideAndDiagonal':
                 var selectedUnitValueC = variableAngleChange(variableC, selectedUnitC);
                 if (selectedUnitValueA !== null && selectedUnitValueB !== '' && selectedUnitValueC !== '') {
-                    area = ((selectedUnitValueA * selectedUnitValueB) * Math.sin(selectedUnitValueC));
+                    perimeter = 2 * (selectedUnitValueA * selectedUnitValueA) + Math.sqrt(2 * (selectedUnitValueB * selectedUnitValueB) + (2 * (selectedUnitValueC * selectedUnitValueC)) - 4 * (selectedUnitValueA * selectedUnitValueA));
                 } else
-                    area = 0;
+                    perimeter = 0;
                 break;
-            case 'twoDiagonalSide':
+            case 'baseHeightAndAngle':
                 var selectedUnitValueC = variableAngleChange(variableC, selectedUnitC);
                 if (selectedUnitValueA !== null && selectedUnitValueB !== '' && selectedUnitValueC !== '') {
-                    area = (selectedUnitValueA * selectedUnitValueB) * Math.sin(selectedUnitValueC);
+                    perimeter = (selectedUnitValueA * selectedUnitValueB) * Math.sin(selectedUnitValueC);
                 } else
-                    area = 0;
+                    perimeter = 0;
                 break;
             default:
                 break;
         }
 
-        var selectedUnit2Value = areaUnitChange(area, selectedUnit2);
-        document.getElementById('area').value = selectedUnit2Value;
+        var selectedUnit2Value = perimeterUnitChange(perimeter, selectedUnit2);
+        document.getElementById('perimeter').value = selectedUnit2Value;
     }
 }
 
@@ -743,13 +775,13 @@ function rhombusOption() {
     var rhombusOption = document.getElementById('rhombus-option').value;
     switch (rhombusOption) {
         case 'sideAndHeight':
-            inputTags(2, 'Rhombus Area', 'rhombus-', 'area', 'findRhombusArea');
+            inputTags(2, 'Rhombus Area', 'rhombus-', 'perimeter', 'findRhombusArea', 0, ['a', 'h'], 0);
             break;
         case 'diagonal':
-            inputTags(2, 'Rhombus Area', 'rhombus-', 'area', 'findRhombusArea');
+            inputTags(2, 'Rhombus Area', 'rhombus-', 'perimeter', 'findRhombusArea', 0, ['e', 'f'], 0);
             break;
         case 'sideAndAngle':
-            inputTags(1, 'Rhombus Area', 'rhombus-', 'area', 'findRhombusArea', 1);
+            inputTags(1, 'Rhombus Area', 'rhombus-', 'perimeter', 'findRhombusArea', 1, ['a'], ['Alpha']);
             break;
         default:
             break;
@@ -770,27 +802,27 @@ function findRhombusArea(variableA, variableB, selectedUnitA, selectedUnitB, sel
         unitChange();
     } else {
         var selectedUnitValueA = variableUnitChange(variableA, selectedUnitA);
-        var area;
+        var perimeter;
 
         var rhombusOption = document.getElementById('rhombus-option').value;
         switch (rhombusOption) {
             case 'sideAndHeight':
                 var selectedUnitValueB = variableUnitChange(variableB, selectedUnitB);
-                area = (selectedUnitValueA * selectedUnitValueB);
+                perimeter = (selectedUnitValueA * selectedUnitValueB);
                 break;
             case 'diagonal':
                 var selectedUnitValueB = variableUnitChange(variableB, selectedUnitB);
-                area = (selectedUnitValueA * selectedUnitValueB) / 2;
+                perimeter = (selectedUnitValueA * selectedUnitValueB) / 2;
                 break;
             case 'sideAndAngle':
                 var selectedUnitValueB = variableAngleChange(variableB, selectedUnitB);
-                area = (selectedUnitValueA * selectedUnitValueA) * Math.sin(selectedUnitValueB);
+                perimeter = (selectedUnitValueA * selectedUnitValueA) * Math.sin(selectedUnitValueB);
                 break;
             default:
                 break;
         }
-        var selectedUnit2Value = areaUnitChange(area, selectedUnit2);
-        document.getElementById('area').value = selectedUnit2Value;
+        var selectedUnit2Value = perimeterUnitChange(perimeter, selectedUnit2);
+        document.getElementById('perimeter').value = selectedUnit2Value;
     }
 }
 
@@ -798,10 +830,10 @@ function kiteOption() {
     var kiteOption = document.getElementById('kite-option').value;
     switch (kiteOption) {
         case 'diagonal':
-            inputTags(2, 'Kite Area', 'kite-', 'area', 'findKiteArea');
+            inputTags(2, 'Kite Area', 'kite-', 'perimeter', 'findKiteArea', 0, ['e', 'f'], 0);
             break;
         case 'unequalSideAndAngle':
-            inputTags(2, 'Kite Area', 'kite-', 'area', 'findKiteArea', 1);
+            inputTags(2, 'Kite Area', 'kite-', 'perimeter', 'findKiteArea', 1, ['a', 'b'], ['Alpha']);
             break;
         default:
             break;
@@ -831,12 +863,12 @@ function findKiteArea(variableA, variableB, variableC, selectedUnitA, selectedUn
     } else {
         var selectedUnitValueA = variableUnitChange(variableA, selectedUnitA);
         var selectedUnitValueB = variableUnitChange(variableB, selectedUnitB);
-        var area;
+        var perimeter;
 
         var kiteOption = document.getElementById('kite-option').value;
         switch (kiteOption) {
             case 'diagonal':
-                area = (selectedUnitValueA * selectedUnitValueB) / 2;
+                perimeter = (selectedUnitValueA * selectedUnitValueB) / 2;
                 break;
             case 'unequalSideAndAngle':
                 console.log("Variable C:-" + variableC);
@@ -844,16 +876,16 @@ function findKiteArea(variableA, variableB, variableC, selectedUnitA, selectedUn
                 var selectedUnitValueC = variableAngleChange(variableC, selectedUnitC);
                 console.log(selectedUnitValueA + '\n' + selectedUnitValueB + '\n' + selectedUnitValueC);
                 if (selectedUnitValueA !== '' && selectedUnitValueB !== '' && selectedUnitValueC !== undefined) {
-                    area = ((selectedUnitValueA * selectedUnitValueB) * selectedUnitValueC);
+                    perimeter = ((selectedUnitValueA * selectedUnitValueB) * selectedUnitValueC);
                 } else {
-                    area = 0;
+                    perimeter = 0;
                 }
                 break;
             default:
                 break;
         }
-        var selectedUnit2Value = areaUnitChange(area, selectedUnit2);
-        document.getElementById('area').value = selectedUnit2Value;
+        var selectedUnit2Value = perimeterUnitChange(perimeter, selectedUnit2);
+        document.getElementById('perimeter').value = selectedUnit2Value;
     }
 }
 
@@ -864,9 +896,9 @@ function findPentagonArea(variableA, selectedUnitA, selectedUnit2) {
         unitChange();
     } else {
         var selectedUnitValue = variableUnitChange(variableA, selectedUnitA);
-        var area = (selectedUnitValue * selectedUnitValue) * Math.sqrt(25 + (10 * Math.sqrt(5))) / 4;
-        var selectedUnit2Value = areaUnitChange(area, selectedUnit2);
-        document.getElementById('area').value = selectedUnit2Value;
+        var perimeter = (selectedUnitValue * selectedUnitValue) * Math.sqrt(25 + (10 * Math.sqrt(5))) / 4;
+        var selectedUnit2Value = perimeterUnitChange(perimeter, selectedUnit2);
+        document.getElementById('perimeter').value = selectedUnit2Value;
     }
 }
 
@@ -877,9 +909,9 @@ function findHexagonArea(variableA, selectedUnitA, selectedUnit2) {
         unitChange();
     } else {
         var selectedUnitValue = variableUnitChange(variableA, selectedUnitA);
-        var area = (selectedUnitValue * selectedUnitValue) * 3/2 * Math.sqrt(3);
-        var selectedUnit2Value = areaUnitChange(area, selectedUnit2);
-        document.getElementById('area').value = selectedUnit2Value;
+        var perimeter = (selectedUnitValue * selectedUnitValue) * 3/2 * Math.sqrt(3);
+        var selectedUnit2Value = perimeterUnitChange(perimeter, selectedUnit2);
+        document.getElementById('perimeter').value = selectedUnit2Value;
     }
 }
 
@@ -890,9 +922,9 @@ function findOctagonArea(variableA, selectedUnitA, selectedUnit2) {
         unitChange();
     } else {
         var selectedUnitValue = variableUnitChange(variableA, selectedUnitA);
-        var area = (selectedUnitValue * selectedUnitValue) * 2 * (1 + Math.sqrt(2));
-        var selectedUnit2Value = areaUnitChange(area, selectedUnit2);
-        document.getElementById('area').value = selectedUnit2Value;
+        var perimeter = (selectedUnitValue * selectedUnitValue) * 2 * (1 + Math.sqrt(2));
+        var selectedUnit2Value = perimeterUnitChange(perimeter, selectedUnit2);
+        document.getElementById('perimeter').value = selectedUnit2Value;
     }
 }
 
@@ -908,19 +940,19 @@ function findAnnulusArea(variableA, variableB, selectedUnitA, selectedUnitB, sel
         var selectedUnitValueB = variableUnitChange(variableB, selectedUnitB);
         if (selectedUnitValueA > selectedUnitValueB && selectedUnitValueA !== '' && selectedUnitValueB !== '') {
             document.getElementById('alert-message').classList.add("invisible");
-            var area = 3.14 * ((selectedUnitValueA * selectedUnitValueA) - (selectedUnitValueB * selectedUnitValueB));
+            var perimeter = 3.14 * ((selectedUnitValueA * selectedUnitValueA) - (selectedUnitValueB * selectedUnitValueB));
         } else if (selectedUnitValueB > selectedUnitValueA) {
             document.getElementById('alert-message').classList.remove("invisible");
             document.getElementById('alert-message').innerHTML = "A Should Be Greater Than B";
-            area = 0;
+            perimeter = 0;
         } else {
             document.getElementById('alert-message').classList.remove("invisible");
             document.getElementById('alert-message').innerHTML = "A Should Be Greater Than B";
-            area = 0;
+            perimeter = 0;
         }
 
-        var selectedUnit2Value = areaUnitChange(area, selectedUnit2);
-        document.getElementById('area').value = selectedUnit2Value;
+        var selectedUnit2Value = perimeterUnitChange(perimeter, selectedUnit2);
+        document.getElementById('perimeter').value = selectedUnit2Value;
     }
 }
 
@@ -945,16 +977,16 @@ function findQuadrilateralArea(variableA, variableB, variableC, selectedUnitA, s
         var selectedUnitValueA = variableUnitChange(variableA, selectedUnitA);
         var selectedUnitValueB = variableUnitChange(variableB, selectedUnitB);
         var selectedUnitValueC = variableAngleChange(variableC, selectedUnitC);
-        var area;
-        area = selectedUnitValueA * selectedUnitValueB * Math.sin(selectedUnitValueC);
-        var selectedUnit2Value = areaUnitChange(area, selectedUnit2);
-        document.getElementById('area').value = selectedUnit2Value;
+        var perimeter;
+        perimeter = selectedUnitValueA * selectedUnitValueB * Math.sin(selectedUnitValueC);
+        var selectedUnit2Value = perimeterUnitChange(perimeter, selectedUnit2);
+        document.getElementById('perimeter').value = selectedUnit2Value;
     }
 }
 
 function restrictAlphabets(e) {
     var x = e.which || e.keycode;
-    if ((x >= 48 && x <= 57))
+    if ((x >= 48 && x <= 57) || x == 46)
         return true;
     else
         return false;

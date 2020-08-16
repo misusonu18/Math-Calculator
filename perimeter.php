@@ -9,7 +9,7 @@ include 'layouts/header.php';
     </div>
 
     <div class="row justify-content-center mt-3">
-        <label class="h1">Area Calculator </label>
+        <label class="h1">Perimeter Calculator </label>
     </div>
     <div class="card mt-5">
         <div class="card-header text-dark" id="card-header">
@@ -17,7 +17,10 @@ include 'layouts/header.php';
                 <div> Shape </div>
 
                 <div>
-                   <select class="custom-select custom-select-sm border border-dark" onchange="selectedShape()" id="shape-select">
+                   <select class="custom-select custom-select-sm border border-info"
+                        onchange="selectedShape()"
+                        id="shape-select"
+                    >
                         <option value="square" selected>Square</option>
                         <option value="rectangle">Rectangle</option>
                         <option value="triangle">Triangle</option>
@@ -39,21 +42,21 @@ include 'layouts/header.php';
                 </div>
             </div>
 
-            <div class="mt-2 d-flex justify-content-between align-items-center invisible" id="find-given-area">
-                <div id="find-area-given"> Find Area Given </div>
+            <div class="mt-2 d-flex justify-content-between align-items-center invisible" id="find-given-perimeter">
+                <div id="find-perimeter-given"> Find Perimeter Given </div>
 
-                <div id="find-area-option"> </div>
+                <div id="find-perimeter-option"> </div>
             </div>
         </div>
 
         <div class="card-body text-white bg-dark">
             <p class="alert alert-danger invisible" id="alert-message"></p>
 
-            <div id="area-calculation"></div>
+            <div id="perimeter-calculation"></div>
         </div>
     </div>
 </div>
 <?php
 include 'layouts/footer.php';
 ?>
-<script src="js/area.js"></script>
+<script src="js/perimeter.js"></script>

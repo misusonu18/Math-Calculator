@@ -12,9 +12,15 @@ include 'layouts/header.php';
 				</div>
 			</a>
 		</div>
-		<div class="col-3">
 
+		<div class="col-3">
+			<a href="perimeter.php" class="btn btn-block">
+				<div class="card-body rounded bg-info justify-content-center">
+					Perimeter Calculator
+				</div>
+			</a>
 		</div>
+
 		<div class="col-3">
 
 		</div>
